@@ -1,49 +1,25 @@
-const cityData = {
-  Chennai: ["Tambaram", "Guindy", "Velachery", "T Nagar"],
-  Coimbatore: ["Gandhipuram", "Ukkadam", "Saibaba Colony"],
-  Madurai: ["Periyar", "Anna Nagar", "Mattuthavani"],
-  Salem: ["New Bus Stand", "Old Bus Stand", "Five Roads"],
-  Trichy: ["Central Bus Stand", "Srirangam", "K K Nagar"],
-  Erode: ["GH", "Thindal", "Perundurai"]
-};
+// java.js const tiruppurSubAreas = { "palladam": { name: "Palladam", routes: [ { destination: "Udumalpet", via: ["Mangalam", "Madathukulam"] }, { destination: "Pollachi", via: ["Sultanpet", "Kinathukadavu"] }, { destination: "Coimbatore", via: ["Sulur", "Singanallur", "Peelamedu"] } ] }, "tiruppur-old-bus-stand": { name: "Tiruppur Old Bus Stand", routes: [ { destination: "Coimbatore", via: ["Somanur", "Sulur", "Singanallur"] }, { destination: "Erode", via: ["Perumanallur", "Perundurai"] }, { destination: "Palladam", via: ["Mangalam"] }, { destination: "Kangeyam", via: ["Uthukuli"] } ] } };
 
-const citySelect = document.getElementById("citySelect");
-const subCitySelect = document.getElementById("subCitySelect");
-const resultSection = document.getElementById("resultSection");
+function populateSubCities() { const city = document.getElementById("citySelect").value; const subCitySelect = document.getElementById("subCitySelect"); const messageDiv = document.getElementById("message"); const resultSection = document.getElementById("resultSection");
 
-// Populate cities
-window.onload = function () {
-  for (const city in cityData) {
-    const option = document.createElement("option");
-    option.value = city;
-    option.textContent = city;
-    citySelect.appendChild(option);
+subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>'; messageDiv.textContent = ""; resultSection.innerHTML = "";
+
+if (city === "tiruppur") { for (const key in tiruppurSubAreas) { const option = document.createElement("option"); option.value = key; option.textContent = tiruppurSubAreas[key].name; subCitySelect.appendChild(option); } subCitySelect.style.display = "block"; } else if (city) { subCitySelect.style.display = "none"; messageDiv.textContent = "This area will be available soon!"; } else { subCitySelect.style.display = "none"; messageDiv.textContent = ""; } }
+
+function showSelectedArea() { const selectedKey = document.getElementById("subCitySelect").value; const resultSection = document.getElementById("resultSection");
+
+if (selectedKey && tiruppurSubAreas[selectedKey]) { const area = tiruppurSubAreas[selectedKey]; let htmlContent = <h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>;
+
+area.routes.forEach(route => {
+  htmlContent += `<li><strong>${route.destination}</strong>`;
+  if (route.via && route.via.length) {
+    htmlContent += `<br><small>via: ${route.via.join(", ")}</small>`;
   }
-};
+  htmlContent += `</li>`;
+});
 
-function populateSubCities() {
-  const selectedCity = citySelect.value;
-  subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
+htmlContent += `</ul>`;
+resultSection.innerHTML = htmlContent;
 
-  if (selectedCity && cityData[selectedCity]) {
-    subCitySelect.style.display = "inline-block";
-    cityData[selectedCity].forEach(subCity => {
-      const option = document.createElement("option");
-      option.value = subCity;
-      option.textContent = subCity;
-      subCitySelect.appendChild(option);
-    });
-  } else {
-    subCitySelect.style.display = "none";
-  }
+} else { resultSection.innerHTML = ""; } }
 
-  resultSection.innerHTML = "";
-}
-
-function showSelectedArea() {
-  const city = citySelect.value;
-  const subCity = subCitySelect.value;
-  if (city && subCity) {
-    resultSection.innerHTML = `<h3>${city} > ${subCity}</h3><p>Bus route info coming soon...</p>`;
-  }
-}
