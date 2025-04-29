@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tamil Nadu Bus Directory</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
   <style>
@@ -10,95 +11,84 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-    }body {
-  background: #f7f9fb;
-  color: #2d3748;
-  padding: 20px;
-}
-
-header {
-  background: #2b6cb0;
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-header h1 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-main {
-  max-width: 600px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-  font-weight: 600;
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-
-select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e0;
-  margin-bottom: 15px;
-}
-
-.message {
-  font-weight: bold;
-  color: #e53e3e;
-  margin-top: 10px;
-}
-
-.result-section {
-  margin-top: 20px;
-}
-
-.result-section h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-  color: #2c5282;
-}
-
-.result-section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.result-section li {
-  background: #edf2f7;
-  margin-bottom: 8px;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.result-section small {
-  color: #718096;
-}
-
-footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #718096;
-}
-
+    }
+    body {
+      background: #f7f9fb;
+      color: #2d3748;
+      padding: 20px;
+    }
+    header {
+      background: #2b6cb0;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      margin-bottom: 15px;
+    }
+    .message {
+      font-weight: bold;
+      color: #e53e3e;
+      margin-top: 10px;
+    }
+    .result-section {
+      margin-top: 20px;
+    }
+    .result-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #2c5282;
+    }
+    .result-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .result-section li {
+      background: #edf2f7;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .result-section small {
+      color: #718096;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #718096;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Tamil Nadu Bus Directory</h1>
     <p>Select your city and area to explore bus routes and stops</p>
-  </header>  <main>
+  </header>
+  <main>
     <section>
       <label for="citySelect">City:</label>
       <select id="citySelect" onchange="populateSubCities()">
@@ -107,35 +97,78 @@ footer {
         <option value="chennai">Chennai (Coming Soon)</option>
         <option value="coimbatore">Coimbatore (Coming Soon)</option>
         <!-- Add more cities here -->
-      </select><label for="subCitySelect">Sub-City/Area:</label>
-  <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
-    <option value="">Select a Sub-City</option>
-  </select>
-
-  <div id="message" class="message"></div>
-</section>
-
-<section class="result-section" id="resultSection"></section>
-
-  </main>  <footer>
+      </select>
+      <label for="subCitySelect">Sub-City/Area:</label>
+      <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
+        <option value="">Select a Sub-City</option>
+      </select>
+      <div id="message" class="message"></div>
+    </section>
+    <section class="result-section" id="resultSection"></section>
+  </main>
+  <footer>
     <p>Made with love by GHOTSOO</p>
-  </footer>  <script>
+  </footer>
+  <script>
     const tiruppurSubAreas = {
       "palladam": {
         name: "Palladam",
         routes: [
-          { destination: "Udumalpet", via: ["Mangalam", "Madathukulam"] },
-          { destination: "Pollachi", via: ["Sultanpet", "Kinathukadavu"] },
-          { destination: "Coimbatore", via: ["Sulur", "Singanallur", "Peelamedu"] }
+          {
+            destination: "Udumalpet",
+            stops: ["Palladam", "Mangalam", "Madathukulam", "Udumalpet"],
+            busNumbers: ["10", "10A", "10B"]
+          },
+          {
+            destination: "Pollachi",
+            stops: ["Palladam", "Sultanpet", "Kinathukadavu", "Pollachi"],
+            busNumbers: ["20", "20A"]
+          },
+          {
+            destination: "Coimbatore",
+            stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
+            busNumbers: ["5", "5A", "5B", "14"]
+          }
         ]
       },
       "tiruppur-old-bus-stand": {
         name: "Tiruppur Old Bus Stand",
         routes: [
-          { destination: "Coimbatore", via: ["Somanur", "Sulur", "Singanallur"] },
-          { destination: "Erode", via: ["Perumanallur", "Perundurai"] },
-          { destination: "Palladam", via: ["Mangalam"] },
-          { destination: "Kangeyam", via: ["Uthukuli"] }
+          {
+            destination: "Somanur",
+            stops: ["Tiruppur Old Bus Stand", "Veerapandi", "Somanur"],
+            busNumbers: ["5", "5A", "5B", "14", "32B"]
+          },
+          {
+            destination: "Coimbatore",
+            stops: ["Tiruppur Old Bus Stand", "Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
+            busNumbers: ["20A", "30D", "30F", "30G", "40A", "90A"]
+          },
+          {
+            destination: "Erode",
+            stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Perundurai", "Erode"],
+            busNumbers: ["26", "26A", "54", "43"]
+          },
+          {
+            destination: "Palladam",
+            stops: ["Tiruppur Old Bus Stand", "Mangalam", "Palladam"],
+            busNumbers: ["10", "10A"]
+          },
+          {
+            destination: "Kangeyam",
+            stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam"],
+            busNumbers: ["12", "12A"]
+          },
+          {
+            destination: "Dharapuram",
+            stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam", "Dharapuram"],
+            busNumbers: ["15", "15A", "15B"]
+          },
+          {
+            destination: "Avinashi",
+            stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Avinashi"],
+            busNumbers: ["16", "16A"]
+          }
         ]
       }
       // Add more sub-areas similarly
@@ -177,9 +210,12 @@ footer {
         let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
 
         area.routes.forEach(route => {
-          htmlContent += `<li><strong>${route.destination}</strong>`;
-          if (route.via && route.via.length) {
-            htmlContent += `<br><small>via: ${route.via.join(", ")}</small>`;
+          htmlContent += `<li><strong>${route.destination}</strong><br>`;
+          if (route.stops && route.stops.length) {
+            htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
+          }
+          if (route.busNumbers && route.busNumbers.length) {
+            htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
           }
           htmlContent += `</li>`;
         });
@@ -190,5 +226,6 @@ footer {
         resultSection.innerHTML = "";
       }
     }
-  </script></body>
+  </script>
+</body>
 </html>
