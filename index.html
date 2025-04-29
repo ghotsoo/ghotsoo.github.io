@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -87,6 +86,9 @@
   <header>
     <h1>Tamil Nadu Bus Directory</h1>
     <p>Select your city and area to explore bus routes and stops</p>
+    <div class="toggle-container">
+  <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
   </header>
   <main>
     <section>
@@ -96,7 +98,6 @@
         <option value="tiruppur">Tiruppur (Available)</option>
         <option value="chennai">Chennai (Coming Soon)</option>
         <option value="coimbatore">Coimbatore (Coming Soon)</option>
-        <!-- Add more cities here -->
       </select>
       <label for="subCitySelect">Sub-City/Area:</label>
       <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
@@ -127,7 +128,7 @@
           {
             destination: "Coimbatore",
             stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["5", "5A", "5B", "14"]
+            busNumbers: ["22", "22A", "22C", "66"]
           }
         ]
       },
@@ -171,61 +172,59 @@
           }
         ]
       }
-      // Add more sub-areas similarly
-    };
+    };function populateSubCities() {
+  const city = document.getElementById("citySelect").value;
+  const subCitySelect = document.getElementById("subCitySelect");
+  const messageDiv = document.getElementById("message");
+  const resultSection = document.getElementById("resultSection");
 
-    function populateSubCities() {
-      const city = document.getElementById("citySelect").value;
-      const subCitySelect = document.getElementById("subCitySelect");
-      const messageDiv = document.getElementById("message");
-      const resultSection = document.getElementById("resultSection");
+  subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
+  messageDiv.textContent = "";
+  resultSection.innerHTML = "";
 
-      subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
-      messageDiv.textContent = "";
-      resultSection.innerHTML = "";
-
-      if (city === "tiruppur") {
-        for (const key in tiruppurSubAreas) {
-          const option = document.createElement("option");
-          option.value = key;
-          option.textContent = tiruppurSubAreas[key].name;
-          subCitySelect.appendChild(option);
-        }
-        subCitySelect.style.display = "block";
-      } else if (city) {
-        subCitySelect.style.display = "none";
-        messageDiv.textContent = "This area will be available soon!";
-      } else {
-        subCitySelect.style.display = "none";
-        messageDiv.textContent = "";
-      }
+  if (city === "tiruppur") {
+    for (const key in tiruppurSubAreas) {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = tiruppurSubAreas[key].name;
+      subCitySelect.appendChild(option);
     }
+    subCitySelect.style.display = "block";
+  } else if (city) {
+    subCitySelect.style.display = "none";
+    messageDiv.textContent = "This area will be available soon!";
+  } else {
+    subCitySelect.style.display = "none";
+    messageDiv.textContent = "";
+  }
+}
 
-    function showSelectedArea() {
-      const selectedKey = document.getElementById("subCitySelect").value;
-      const resultSection = document.getElementById("resultSection");
+function showSelectedArea() {
+  const selectedKey = document.getElementById("subCitySelect").value;
+  const resultSection = document.getElementById("resultSection");
 
-      if (selectedKey && tiruppurSubAreas[selectedKey]) {
-        const area = tiruppurSubAreas[selectedKey];
-        let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
+  if (selectedKey && tiruppurSubAreas[selectedKey]) {
+    const area = tiruppurSubAreas[selectedKey];
+    let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
 
-        area.routes.forEach(route => {
-          htmlContent += `<li><strong>${route.destination}</strong><br>`;
-          if (route.stops && route.stops.length) {
-            htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
-          }
-          if (route.busNumbers && route.busNumbers.length) {
-            htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
-          }
-          htmlContent += `</li>`;
-        });
-
-        htmlContent += `</ul>`;
-        resultSection.innerHTML = htmlContent;
-      } else {
-        resultSection.innerHTML = "";
+    area.routes.forEach(route => {
+      htmlContent += `<li><strong>${route.destination}</strong><br>`;
+      if (route.stops && route.stops.length) {
+        htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
       }
-    }
+      if (route.busNumbers && route.busNumbers.length) {
+        htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
+      }
+      htmlContent += `</li>`;
+    });
+
+    htmlContent += `</ul>`;
+    resultSection.innerHTML = htmlContent;
+  } else {
+    resultSection.innerHTML = "";
+  }
+}
+
   </script>
 </body>
 </html>

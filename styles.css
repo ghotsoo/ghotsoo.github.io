@@ -1,153 +1,44 @@
-/* Base Reset & Typography */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f8fb;
-  color: #2d3748;
-  transition: background-color 0.3s, color 0.3s;
-}
+/* styles.css */ body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f8fb; color: #2d3748; transition: background-color 0.3s ease, color 0.3s ease; }
 
-/* Dark Mode */
-body.dark-mode {
-  background-color: #1a202c;
-  color: #e2e8f0;
-}
+body.dark-mode { background-color: #1a202c; color: #e2e8f0; }
 
-body.dark-mode main {
-  background: #2d3748;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
+header { background: linear-gradient(135deg, #2b6cb0, #3182ce); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 16px 16px; transition: background 0.3s ease; }
 
-body.dark-mode select,
-body.dark-mode .result-section li {
-  background-color: #4a5568;
-  color: #f7fafc;
-  border-color: #718096;
-}
+header h1 { font-size: 2.5rem; margin-bottom: 10px; }
 
-/* Sticky Header */
-header {
-  background: linear-gradient(135deg, #2b6cb0, #3182ce);
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
-  border-radius: 0 0 16px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+main { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: background 0.3s ease; }
 
-/* Header Text */
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
+body.dark-mode main { background: #2d3748; }
 
-/* Main Content */
-main {
-  max-width: 700px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s;
-}
+label { display: block; font-weight: 600; margin: 20px 0 8px; }
 
-/* Form Elements */
-label {
-  display: block;
-  font-weight: 600;
-  margin: 20px 0 8px;
-}
+select { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; background-color: #fff; font-size: 1rem; transition: background-color 0.3s ease, color 0.3s ease; }
 
-select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #cbd5e0;
-  border-radius: 8px;
-  background-color: #fff;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
+body.dark-mode select { background-color: #4a5568; color: #f7fafc; border-color: #718096; }
 
-select:focus {
-  outline: none;
-  border-color: #3182ce;
-  box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
-}
+.message { margin-top: 10px; color: #e53e3e; font-weight: bold; }
 
-.message {
-  margin-top: 10px;
-  color: #e53e3e;
-  font-weight: bold;
-}
+.result-section { margin-top: 30px; }
 
-/* Result Section */
-.result-section {
-  margin-top: 30px;
-}
+.result-section h3 { font-size: 1.4rem; margin-bottom: 15px; color: #2c5282; }
 
-.result-section h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  color: #2c5282;
-}
+body.dark-mode .result-section h3 { color: #90cdf4; }
 
-/* Card Layout for Routes */
-.result-section ul {
-  list-style: none;
-  padding: 0;
-}
+.result-section ul { list-style: none; padding: 0; }
 
-.result-section li {
-  background: #e2e8f0;
-  margin-bottom: 12px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  position: relative;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-}
+.result-section li { background: #e2e8f0; margin-bottom: 10px; padding: 12px 15px; border-radius: 8px; transition: background 0.3s ease; }
 
-.result-section li:hover {
-  transform: scale(1.02);
-}
+body.dark-mode .result-section li { background: #4a5568; }
 
-.result-section small {
-  display: block;
-  color: #4a5568;
-  margin-top: 6px;
-  font-size: 0.9rem;
-}
+.result-section small { display: block; color: #4a5568; margin-top: 5px; }
 
-/* Bus Number Tags */
-.result-section .bus-tags {
-  margin-top: 8px;
-}
+body.dark-mode .result-section small { color: #cbd5e0; }
 
-.bus-tag {
-  display: inline-block;
-  background-color: #3182ce;
-  color: white;
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  margin-right: 5px;
-  margin-top: 5px;
-}
+footer { text-align: center; padding: 20px; color: #718096; font-size: 0.9rem; }
 
-body.dark-mode .bus-tag {
-  background-color: #63b3ed;
-  color: #1a202c;
-}
+.toggle-container { text-align: center; margin: 20px 0; }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #718096;
-  font-size: 0.9rem;
-  margin-top: 40px;
-}
+.toggle-button { background-color: #2b6cb0; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s ease; }
+
+.toggle-button:hover { background-color: #2c5282; }
+
