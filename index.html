@@ -1,75 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My GitHub-style Site</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f6f8fa;
-      color: #24292e;
-    }
-
-    .navbar {
-      background-color: #24292e;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    .repo-box {
-      background-color: white;
-      border: 1px solid #d0d7de;
-      border-radius: 6px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .repo-box h2 {
-      margin-top: 0;
-    }
-
-    .code {
-      background-color: #f6f8fa;
-      border: 1px solid #d0d7de;
-      border-radius: 6px;
-      padding: 10px;
-      font-family: monospace;
-      overflow-x: auto;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GHOTSOO Bus Routes</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="navbar">
-    <h1>GHOTSOO</h1>
-  </div>
-  <div class="container">
-    <div class="repo-box">
-      <h2>GHOTSOO</h2>
-      <p>First ever website to build by me hehe.</p>
-      <div class="code">
-<pre>
-&lt;html&gt;
-  &lt;head&gt;&lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;GHOTSOO!&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-      </div>
-    </div>
-  </div>
+  <header>
+    <h1>GHOTSOO Transit</h1>
+    <p>Your friendly bus route guide</p>
+  </header>
+
+  <main>
+    <section class="search-section">
+      <input type="text" id="busNumberInput" placeholder="Enter bus number...">
+      <button onclick="searchBus()">Search</button>
+    </section>
+
+    <section class="result-section" id="resultSection">
+      <!-- Bus route results will appear here -->
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with love by GHOTSOO</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
