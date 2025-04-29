@@ -3,23 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GHOTSOO Bus Routes</title>
+  <title>Tamil Nadu Bus Directory</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>GHOTSOO Transit</h1>
-    <p>Your friendly bus route guide</p>
+    <h1>Tamil Nadu Bus Directory</h1>
+    <p>Select your city and area to explore bus routes</p>
   </header>
 
   <main>
-    <section class="search-section">
-      <input type="text" id="busNumberInput" placeholder="Enter bus number...">
-      <button onclick="searchBus()">Search</button>
+    <section class="dropdown-section">
+      <label for="citySelect">City:</label>
+      <select id="citySelect" onchange="populateSubCities()">
+        <option value="">Select a City</option>
+      </select>
+
+      <label for="subCitySelect">Sub-City/Area:</label>
+      <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
+        <option value="">Select a Sub-City</option>
+      </select>
     </section>
 
     <section class="result-section" id="resultSection">
-      <!-- Bus route results will appear here -->
+      <!-- Display area -->
     </section>
   </main>
 
