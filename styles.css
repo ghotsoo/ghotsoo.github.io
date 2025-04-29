@@ -42,7 +42,7 @@ footer { text-align: center; padding: 20px; color: #718096; font-size: 0.9rem; }
 
 .toggle-button:hover { background-color: #2c5282; }
 body {
-  background-image: url('Screenshot_20250429-233616.png'); /* or 'images/background.jpg' */
+  background-image: url('background.jpg'); /* or 'images/background.jpg' */
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
