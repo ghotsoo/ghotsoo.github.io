@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tamil Nadu Bus Directory</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #2d3748;
+    }
+    .result-section {
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -36,6 +49,8 @@
       <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
         <option value="">Select a Sub-City</option>
       </select>
+
+      <div id="message" class="message"></div>
     </section>
 
     <section class="result-section" id="resultSection">
@@ -47,6 +62,97 @@
     <p>Made with love by GHOTSOO</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const tiruppurSubAreas = {
+      "tiruppur-old-bus-stand": {
+        name: "Tiruppur Old Bus Stand",
+        routes: ["Coimbatore", "Erode", "Palladam", "Kangeyam"]
+      },
+      "new-bus-stand": {
+        name: "New Bus Stand",
+        routes: ["Dharapuram", "Avinashi", "Karur", "Thanjavur"]
+      },
+      "kangeyam": {
+        name: "Kangeyam",
+        routes: ["Erode", "Karur", "Dindigul"]
+      },
+      "avinashi": {
+        name: "Avinashi",
+        routes: ["Coimbatore", "Mettupalayam", "Coonoor"]
+      },
+      "palladam": {
+        name: "Palladam",
+        routes: ["Udumalpet", "Pollachi", "Coimbatore"]
+      },
+      "uthukuli": {
+        name: "Uthukuli",
+        routes: ["Erode", "Gobichettipalayam"]
+      },
+      "mangalam": {
+        name: "Mangalam",
+        routes: ["Dharapuram", "Tiruppur"]
+      },
+      "perumanallur": {
+        name: "Perumanallur",
+        routes: ["Tiruppur", "Erode"]
+      },
+      "somanur": {
+        name: "Somanur",
+        routes: ["Sulur", "Coimbatore"]
+      },
+      "dharapuram": {
+        name: "Dharapuram",
+        routes: ["Tiruppur", "Karur", "Madurai"]
+      },
+      "chennimalai": {
+        name: "Chennimalai",
+        routes: ["Erode", "Kangeyam", "Perundurai"]
+      }
+    };
+
+    function populateSubCities() {
+      const city = document.getElementById("citySelect").value;
+      const subCitySelect = document.getElementById("subCitySelect");
+      const messageDiv = document.getElementById("message");
+      const resultSection = document.getElementById("resultSection");
+
+      subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
+      messageDiv.textContent = "";
+      resultSection.innerHTML = "";
+
+      if (city === "tiruppur") {
+        for (const key in tiruppurSubAreas) {
+          const option = document.createElement("option");
+          option.value = key;
+          option.textContent = tiruppurSubAreas[key].name;
+          subCitySelect.appendChild(option);
+        }
+        subCitySelect.style.display = "block";
+      } else if (city) {
+        subCitySelect.style.display = "none";
+        messageDiv.textContent = "This area will be available soon!";
+      } else {
+        subCitySelect.style.display = "none";
+        messageDiv.textContent = "";
+      }
+    }
+
+    function showSelectedArea() {
+      const selectedKey = document.getElementById("subCitySelect").value;
+      const resultSection = document.getElementById("resultSection");
+
+      if (selectedKey && tiruppurSubAreas[selectedKey]) {
+        const area = tiruppurSubAreas[selectedKey];
+        const routesList = area.routes.map(route => `<li>${route}</li>`).join("");
+        resultSection.innerHTML = `
+          <h3>${area.name}</h3>
+          <p>Buses travel from this area to:</p>
+          <ul>${routesList}</ul>
+        `;
+      } else {
+        resultSection.innerHTML = "";
+      }
+    }
+  </script>
 </body>
 </html>
