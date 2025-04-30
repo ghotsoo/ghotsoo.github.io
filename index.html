@@ -127,17 +127,7 @@
           {
             destination: "Coimbatore",
             stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["5", "5A", "5B", "14"]
-          },
-          {
-            destination: "Senjeripirivu",
-            stops: ["Palladam", "Karadivavi", "Selakkarichal", "Senjeripirivu"],
-            busNumbers: ["P17"]
-          },
-          {
-            destination: "Senjeripirivu",
-            stops: ["Palladam", "Selakkarichal", "Karadivavi", "Senjeripirivu"],
-            busNumbers: ["17A"]
+            busNumbers: ["14", "32", "32A"]
           }
         ]
       },
@@ -178,21 +168,6 @@
             destination: "Avinashi",
             stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Avinashi"],
             busNumbers: ["16", "16A"]
-          },
-          {
-            destination: "Senjeripirivu",
-            stops: ["Tiruppur Old Bus Stand", "Palladam", "Selakkarichal", "Karadivavi", "Senjeripirivu"],
-            busNumbers: ["17A"]
-          },
-          {
-            destination: "Kundadam",
-            stops: ["Tiruppur Old Bus Stand", "Kundadam"],
-            busNumbers: ["19/15K"]
-          },
-          {
-            destination: "Gandhipuram",
-            stops: ["Tiruppur Old Bus Stand", "Kattampatti", "Gandhipuram"],
-            busNumbers: ["33D"]
           }
         ]
       }
@@ -229,22 +204,28 @@
     function showSelectedArea() {
       const selectedKey = document.getElementById("subCitySelect").value;
       const resultSection = document.getElementById("resultSection");
+
       if (selectedKey && tiruppurSubAreas[selectedKey]) {
-        const areaData = tiruppurSubAreas[selectedKey];
-        let html = `<h3>Bus Routes from ${areaData.name}</h3><ul>`;
-        areaData.routes.forEach(route => {
-          html += `<li><strong>${areaData.name} → ${route.destination}</strong><br/>
-          Stops: ${route.stops.join(" → ")}<br/>
-          Bus Numbers: ${route.busNumbers.join(", ")}</li>`;
+        const area = tiruppurSubAreas[selectedKey];
+        let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
+
+        area.routes.forEach(route => {
+          htmlContent += `<li><strong>${route.destination}</strong><br>`;
+          if (route.stops && route.stops.length) {
+            htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
+          }
+          if (route.busNumbers && route.busNumbers.length) {
+            htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
+          }
+          htmlContent += `</li>`;
         });
-        html += "</ul>";
-        resultSection.innerHTML = html;
+
+        htmlContent += `</ul>`;
+        resultSection.innerHTML = htmlContent;
       } else {
-        resultSection.innerHTML = "<p>No route data available for this area.</p>";
+        resultSection.innerHTML = "";
       }
     }
   </script>
 </body>
 </html>
-
-      
