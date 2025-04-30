@@ -1,22 +1,51 @@
-// java.js
+// Enhanced java.js
+
 const tiruppurSubAreas = {
   "palladam": {
     name: "Palladam",
     routes: [
-      { destination: "Udumalpet", via: ["Mangalam", "Madathukulam"] },
-      { destination: "Pollachi", via: ["Sultanpet", "Kinathukadavu"] },
-      { destination: "Coimbatore", via: ["Sulur", "Singanallur", "Peelamedu"] }
-    ]
+      {
+        destination: "Udumalpet",
+        via: ["Mangalam", "Madathukulam"],
+        buses: ["43", "TNSTC 127", "Express"],
+      },
+      {
+        destination: "Pollachi",
+        via: ["Sultanpet", "Kinathukadavu"],
+        buses: ["37", "59", "Express"],
+      },
+      {
+        destination: "Coimbatore",
+        via: ["Sulur", "Singanallur", "Peelamedu"],
+        buses: ["3A", "44C", "90B"],
+      },
+    ],
   },
   "tiruppur-old-bus-stand": {
     name: "Tiruppur Old Bus Stand",
     routes: [
-      { destination: "Coimbatore", via: ["Somanur", "Sulur", "Singanallur"] },
-      { destination: "Erode", via: ["Perumanallur", "Perundurai"] },
-      { destination: "Palladam", via: ["Mangalam"] },
-      { destination: "Kangeyam", via: ["Uthukuli"] }
-    ]
-  }
+      {
+        destination: "Coimbatore",
+        via: ["Somanur", "Sulur", "Singanallur"],
+        buses: ["5A", "5B", "5C", "14", "90A", "20A"],
+      },
+      {
+        destination: "Erode",
+        via: ["Perumanallur", "Perundurai"],
+        buses: ["33", "28E", "TNSTC 405"],
+      },
+      {
+        destination: "Palladam",
+        via: ["Mangalam"],
+        buses: ["18", "22", "66"],
+      },
+      {
+        destination: "Kangeyam",
+        via: ["Uthukuli"],
+        buses: ["15K", "72", "Express"],
+      },
+    ],
+  },
 };
 
 function populateSubCities() {
@@ -54,10 +83,15 @@ function showSelectedArea() {
     const area = tiruppurSubAreas[selectedKey];
     let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
 
-    area.routes.forEach(route => {
+    area.routes.forEach((route) => {
       htmlContent += `<li><strong>${route.destination}</strong>`;
       if (route.via && route.via.length) {
         htmlContent += `<br><small>via: ${route.via.join(", ")}</small>`;
+      }
+      if (route.buses && route.buses.length) {
+        htmlContent += `<div class='bus-tags'>${route.buses
+          .map((bus) => `<span class='bus-tag'>${bus}</span>`) 
+          .join(" ")}</div>`;
       }
       htmlContent += `</li>`;
     });
@@ -67,4 +101,9 @@ function showSelectedArea() {
   } else {
     resultSection.innerHTML = "";
   }
+}
+
+// Optional Enhancement: Dark mode toggle
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
 }
