@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -96,7 +95,6 @@
         <option value="tiruppur">Tiruppur (Available)</option>
         <option value="chennai">Chennai (Coming Soon)</option>
         <option value="coimbatore">Coimbatore (Coming Soon)</option>
-        <!-- Add more cities here -->
       </select>
       <label for="subCitySelect">Sub-City/Area:</label>
       <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
@@ -114,118 +112,82 @@
       "palladam": {
         name: "Palladam",
         routes: [
-          {
-            destination: "Udumalpet",
-            stops: ["Palladam", "Mangalam", "Madathukulam", "Udumalpet"],
-            busNumbers: ["10", "10A", "10B"]
-          },
-          {
-            destination: "Pollachi",
-            stops: ["Palladam", "Sultanpet", "Kinathukadavu", "Pollachi"],
-            busNumbers: ["20", "20A"]
-          },
-          {
-            destination: "Coimbatore",
-            stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["5", "5A", "5B", "14"]
-          }
+          { destination: "Udumalpet", stops: ["Palladam", "Mangalam", "Madathukulam", "Udumalpet"], busNumbers: ["10", "10A", "10B"] },
+          { destination: "Pollachi", stops: ["Palladam", "Sultanpet", "Kinathukadavu", "Pollachi"], busNumbers: ["20", "20A"] },
+          { destination: "Coimbatore", stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"], busNumbers: ["5", "5A", "5B", "14"] },
+          { destination: "Dindigul", stops: ["Palladam", "Kangeyam", "Vellakovil", "Karur", "Dindigul"], busNumbers: ["Sri Kumaran Travels", "NueGo", "KNT Travels"] },
+          { destination: "Madurai", stops: ["Palladam", "Kangeyam", "Karur", "Dindigul", "Madurai"], busNumbers: ["Sri Kumaran Travels", "Krish Travels", "NueGo"] },
+          { destination: "Thanjavur", stops: ["Palladam", "Kangeyam", "Karur", "Trichy", "Thanjavur"], busNumbers: ["Essaar", "City Travels", "Air Indiaa Travels"] }
         ]
       },
       "tiruppur-old-bus-stand": {
         name: "Tiruppur Old Bus Stand",
         routes: [
-          {
-            destination: "Somanur",
-            stops: ["Tiruppur Old Bus Stand", "Veerapandi", "Somanur"],
-            busNumbers: ["5", "5A", "5B", "14", "32B"]
-          },
-          {
-            destination: "Coimbatore",
-            stops: ["Tiruppur Old Bus Stand", "Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["20A", "30D", "30F", "30G", "40A", "90A"]
-          },
-          {
-            destination: "Erode",
-            stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Perundurai", "Erode"],
-            busNumbers: ["26", "26A", "54", "43"]
-          },
-          {
-            destination: "Palladam",
-            stops: ["Tiruppur Old Bus Stand", "Mangalam", "Palladam"],
-            busNumbers: ["10", "10A"]
-          },
-          {
-            destination: "Kangeyam",
-            stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam"],
-            busNumbers: ["12", "12A"]
-          },
-          {
-            destination: "Dharapuram",
-            stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam", "Dharapuram"],
-            busNumbers: ["15", "15A", "15B"]
-          },
-          {
-            destination: "Avinashi",
-            stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Avinashi"],
-            busNumbers: ["16", "16A"]
-          }
+          { destination: "Somanur", stops: ["Tiruppur Old Bus Stand", "Veerapandi", "Somanur"], busNumbers: ["5", "5A", "5B", "14", "32B"] },
+          { destination: "Coimbatore", stops: ["Tiruppur Old Bus Stand", "Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"], busNumbers: ["20A", "30D", "30F", "30G", "40A", "90A"] },
+          { destination: "Erode", stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Perundurai", "Erode"], busNumbers: ["26", "26A", "54", "43"] },
+          { destination: "Palladam", stops: ["Tiruppur Old Bus Stand", "Mangalam", "Palladam"], busNumbers: ["10", "10A"] },
+          { destination: "Kangeyam", stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam"], busNumbers: ["12", "12A"] },
+          { destination: "Dharapuram", stops: ["Tiruppur Old Bus Stand", "Uthukuli", "Kangeyam", "Dharapuram"], busNumbers: ["15", "15A", "15B"] },
+          { destination: "Avinashi", stops: ["Tiruppur Old Bus Stand", "Perumanallur", "Avinashi"], busNumbers: ["16", "16A"] },
+          { destination: "Dindigul", stops: ["Tiruppur Old Bus Stand", "Kangeyam", "Karur", "Dindigul"], busNumbers: ["JET Line", "Sri Kumaran Travels", "City Travels"] },
+          { destination: "Madurai", stops: ["Tiruppur Old Bus Stand", "Kangeyam", "Karur", "Dindigul", "Madurai"], busNumbers: ["JET Line", "Sri Kumaran Travels", "City Travels"] },
+          { destination: "Thanjavur", stops: ["Tiruppur Old Bus Stand", "Kangeyam", "Karur", "Trichy", "Thanjavur"], busNumbers: ["Essaar", "City Travels", "Air Indiaa Travels"] }
         ]
       }
-      // Add more sub-areas similarly
-    };
+    };function populateSubCities() {
+  const city = document.getElementById("citySelect").value;
+  const subCitySelect = document.getElementById("subCitySelect");
+  const messageDiv = document.getElementById("message");
+  const resultSection = document.getElementById("resultSection");
 
-    function populateSubCities() {
-      const city = document.getElementById("citySelect").value;
-      const subCitySelect = document.getElementById("subCitySelect");
-      const messageDiv = document.getElementById("message");
-      const resultSection = document.getElementById("resultSection");
+  subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
+  messageDiv.textContent = "";
+  resultSection.innerHTML = "";
 
-      subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
-      messageDiv.textContent = "";
-      resultSection.innerHTML = "";
-
-      if (city === "tiruppur") {
-        for (const key in tiruppurSubAreas) {
-          const option = document.createElement("option");
-          option.value = key;
-          option.textContent = tiruppurSubAreas[key].name;
-          subCitySelect.appendChild(option);
-        }
-        subCitySelect.style.display = "block";
-      } else if (city) {
-        subCitySelect.style.display = "none";
-        messageDiv.textContent = "This area will be available soon!";
-      } else {
-        subCitySelect.style.display = "none";
-        messageDiv.textContent = "";
-      }
+  if (city === "tiruppur") {
+    for (const key in tiruppurSubAreas) {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = tiruppurSubAreas[key].name;
+      subCitySelect.appendChild(option);
     }
+    subCitySelect.style.display = "block";
+  } else if (city) {
+    subCitySelect.style.display = "none";
+    messageDiv.textContent = "This area will be available soon!";
+  } else {
+    subCitySelect.style.display = "none";
+    messageDiv.textContent = "";
+  }
+}
 
-    function showSelectedArea() {
-      const selectedKey = document.getElementById("subCitySelect").value;
-      const resultSection = document.getElementById("resultSection");
+function showSelectedArea() {
+  const selectedKey = document.getElementById("subCitySelect").value;
+  const resultSection = document.getElementById("resultSection");
 
-      if (selectedKey && tiruppurSubAreas[selectedKey]) {
-        const area = tiruppurSubAreas[selectedKey];
-        let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
+  if (selectedKey && tiruppurSubAreas[selectedKey]) {
+    const area = tiruppurSubAreas[selectedKey];
+    let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
 
-        area.routes.forEach(route => {
-          htmlContent += `<li><strong>${route.destination}</strong><br>`;
-          if (route.stops && route.stops.length) {
-            htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
-          }
-          if (route.busNumbers && route.busNumbers.length) {
-            htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
-          }
-          htmlContent += `</li>`;
-        });
-
-        htmlContent += `</ul>`;
-        resultSection.innerHTML = htmlContent;
-      } else {
-        resultSection.innerHTML = "";
+    area.routes.forEach(route => {
+      htmlContent += `<li><strong>${route.destination}</strong><br>`;
+      if (route.stops && route.stops.length) {
+        htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
       }
-    }
+      if (route.busNumbers && route.busNumbers.length) {
+        htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
+      }
+      htmlContent += `</li>`;
+    });
+
+    htmlContent += `</ul>`;
+    resultSection.innerHTML = htmlContent;
+  } else {
+    resultSection.innerHTML = "";
+  }
+}
+
   </script>
 </body>
 </html>
