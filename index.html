@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -58,7 +59,7 @@
       margin-top: 20px;
     }
     .result-section h3 {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       margin-bottom: 10px;
       color: #2c5282;
     }
@@ -71,9 +72,11 @@
       margin-bottom: 8px;
       padding: 10px;
       border-radius: 8px;
+      font-size: 1.1rem;
     }
     .result-section small {
       color: #718096;
+      font-size: 1rem;
     }
     footer {
       text-align: center;
@@ -86,9 +89,6 @@
   <header>
     <h1>Tamil Nadu Bus Directory</h1>
     <p>Select your city and area to explore bus routes and stops</p>
-    <div class="toggle-container">
-  <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-</div>
   </header>
   <main>
     <section>
@@ -111,30 +111,7 @@
     <p>Easy access with ghotsoo</p>
   </footer>
   <script>
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
     const tiruppurSubAreas = {
-      "palladam": {
-        name: "Palladam",
-        routes: [
-          {
-            destination: "Udumalpet",
-            stops: ["Palladam", "Mangalam", "Madathukulam", "Udumalpet"],
-            busNumbers: ["10", "10A", "10B"]
-          },
-          {
-            destination: "Pollachi",
-            stops: ["Palladam", "Sultanpet", "Kinathukadavu", "Pollachi"],
-            busNumbers: ["20", "20A"]
-          },
-          {
-            destination: "Coimbatore",
-            stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["22", "22A", "22C", "66"]
-          }
-        ]
-      },
       "tiruppur-old-bus-stand": {
         name: "Tiruppur Old Bus Stand",
         routes: [
@@ -174,60 +151,75 @@ function toggleDarkMode() {
             busNumbers: ["16", "16A"]
           }
         ]
-      }
-    };function populateSubCities() {
-  const city = document.getElementById("citySelect").value;
-  const subCitySelect = document.getElementById("subCitySelect");
-  const messageDiv = document.getElementById("message");
-  const resultSection = document.getElementById("resultSection");
-
-  subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
-  messageDiv.textContent = "";
-  resultSection.innerHTML = "";
-
-  if (city === "tiruppur") {
-    for (const key in tiruppurSubAreas) {
-      const option = document.createElement("option");
-      option.value = key;
-      option.textContent = tiruppurSubAreas[key].name;
-      subCitySelect.appendChild(option);
-    }
-    subCitySelect.style.display = "block";
-  } else if (city) {
-    subCitySelect.style.display = "none";
-    messageDiv.textContent = "This area will be available soon!";
-  } else {
-    subCitySelect.style.display = "none";
-    messageDiv.textContent = "";
-  }
-}
-
-function showSelectedArea() {
-  const selectedKey = document.getElementById("subCitySelect").value;
-  const resultSection = document.getElementById("resultSection");
-
-  if (selectedKey && tiruppurSubAreas[selectedKey]) {
-    const area = tiruppurSubAreas[selectedKey];
-    let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
-
-    area.routes.forEach(route => {
-      htmlContent += `<li><strong>${route.destination}</strong><br>`;
-      if (route.stops && route.stops.length) {
-        htmlContent += `<small>Stops: ${route.stops.join(" → ")}</small><br>`;
-      }
-      if (route.busNumbers && route.busNumbers.length) {
-        htmlContent += `<small>Bus Numbers: ${route.busNumbers.join(", ")}</small>`;
-      }
-      htmlContent += `</li>`;
-    });
-
-    htmlContent += `</ul>`;
-    resultSection.innerHTML = htmlContent;
-  } else {
-    resultSection.innerHTML = "";
-  }
-}
-
-  </script>
-</body>
-</html>
+      },
+      "tiruppur-new-bus-stand": {
+        name: "Tiruppur New Bus Stand",
+        routes: [
+          {
+            destination: "Coimbatore",
+            stops: ["Tiruppur New Bus Stand", "Veerapandi", "Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
+            busNumbers: ["20A", "30D", "30F", "30G", "40A", "90A"]
+          },
+          {
+            destination: "Erode",
+            stops: ["Tiruppur New Bus Stand", "Perumanallur", "Perundurai", "Erode"],
+            busNumbers: ["26", "26A", "54", "43"]
+          }
+        ]
+      },
+      "kovil-vazhi-bus-stand": {
+        name: "Kovil Vazhi Bus Stand",
+        routes: [
+          {
+            destination: "Madurai",
+            stops: ["Kovil Vazhi Bus Stand", "Karur", "Dindigul", "Madurai"],
+            busNumbers: ["101", "102"]
+          },
+          {
+            destination: "Chennai",
+            stops: ["Kovil Vazhi Bus Stand", "Salem", "Vellore", "Chennai"],
+            busNumbers: ["201", "202"]
+          }
+        ]
+      },
+      "palladam-bus-stand": {
+        name: "Palladam Bus Stand",
+        routes: [
+          {
+            destination: "Coimbatore",
+            stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
+            busNumbers: ["22", "22A", "22C", "66"]
+          },
+          {
+            destination: "Udumalpet",
+            stops: ["Palladam", "Mangalam", "Madathukulam", "Udumalpet"],
+            busNumbers: ["10", "10A", "10B"]
+          },
+          {
+            destination: "Pollachi",
+            stops: ["Palladam", "Sultanpet", "Kinathukadavu", "Pollachi"],
+            busNumbers: ["20", "20A"]
+          }
+        ]
+      },
+      "avinashi-bus-stand": {
+        name: "Avinashi Bus Stand",
+        routes: [
+          {
+            destination: "Tiruppur",
+            stops: ["Avinashi", "Perumanallur", "Tiruppur"],
+            busNumbers: ["16", "16A"]
+          },
+          {
+            destination: "Coimbatore",
+            stops: ["Avinashi", "Karumathampatti", "Neelambur", "Singanallur", "Gandhipuram"],
+            busNumbers: ["30", "30A"]
+          }
+        ]
+      },
+      "dharapuram-bus-stand": {
+        name: "Dharapuram Bus Stand",
+        routes: [
+          {
+            destination: "Coimbatore",
+            stops: ["Dharapuram", "Kangeyam", "Uthukuli", "Tiruppur", "Avinashi", "56
