@@ -96,7 +96,6 @@
         <option value="tiruppur">Tiruppur (Available)</option>
         <option value="chennai">Chennai (Coming Soon)</option>
         <option value="coimbatore">Coimbatore (Coming Soon)</option>
-        <!-- Add more cities here -->
       </select>
       <label for="subCitySelect">Sub-City/Area:</label>
       <select id="subCitySelect" style="display: none;" onchange="showSelectedArea()">
@@ -127,7 +126,7 @@
           {
             destination: "Coimbatore",
             stops: ["Palladam", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
-            busNumbers: ["14", "32", "32A"]
+            busNumbers: ["5", "5A", "5B"] // Removed 14
           }
         ]
       },
@@ -136,12 +135,12 @@
         routes: [
           {
             destination: "Somanur",
-            stops: ["Tiruppur Old Bus Stand", "Veerapandi", "Somanur"],
+            stops: ["Tiruppur Old Bus Stand", "Veerapandi", "Mangalam", "Somanur"],
             busNumbers: ["5", "5A", "5B", "14", "32B"]
           },
           {
-            destination: "Coimbatore",
-            stops: ["Tiruppur Old Bus Stand", "Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
+            destination: "From Somanur to Coimbatore",
+            stops: ["Somanur", "Sulur", "Singanallur", "Peelamedu", "Gandhipuram"],
             busNumbers: ["20A", "30D", "30F", "30G", "40A", "90A"]
           },
           {
@@ -171,7 +170,6 @@
           }
         ]
       }
-      // Add more sub-areas similarly
     };
 
     function populateSubCities() {
