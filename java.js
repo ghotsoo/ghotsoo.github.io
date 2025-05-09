@@ -1,109 +1,48 @@
-// Enhanced java.js
+// DOM Elements
+const busSearchForm = document.getElementById('busSearchForm');
+const fromSelect = document.getElementById('from');
+const toSelect = document.getElementById('to');
+const resultsContainer = document.getElementById('resultsContainer');
+const popularRoutesContainer = document.querySelector('.popular-routes');
 
-const tiruppurSubAreas = {
-  "palladam": {
-    name: "Palladam",
-    routes: [
-      {
-        destination: "Udumalpet",
-        via: ["Mangalam", "Madathukulam"],
-        buses: ["43", "TNSTC 127", "Express"],
-      },
-      {
-        destination: "Pollachi",
-        via: ["Sultanpet", "Kinathukadavu"],
-        buses: ["37", "59", "Express"],
-      },
-      {
-        destination: "Coimbatore",
-        via: ["Sulur", "Singanallur", "Peelamedu"],
-        buses: ["3A", "44C", "90B"],
-      },
+// Sample Data (in a real app, this would come from an API)
+const busData = {
+    "tiruppur-coimbatore": [
+        {
+            busNumber: "12A",
+            operator: "TNSTC",
+            departure: "5:00 AM",
+            arrival: "6:15 AM",
+            frequency: "Every 15 minutes",
+            fare: "₹25",
+            type: "Ordinary"
+        },
+        {
+            busNumber: "34B",
+            operator: "TNSTC",
+            departure: "5:30 AM",
+            arrival: "6:45 AM",
+            frequency: "Every 30 minutes",
+            fare: "₹30",
+            type: "Express"
+        }
     ],
-  },
-  "tiruppur-old-bus-stand": {
-    name: "Tiruppur Old Bus Stand",
-    routes: [
-      {
-        destination: "Coimbatore",
-        via: ["Somanur", "Sulur", "Singanallur"],
-        buses: ["5A", "5B", "5C", "14", "90A", "20A"],
-      },
-      {
-        destination: "Erode",
-        via: ["Perumanallur", "Perundurai"],
-        buses: ["33", "28E", "TNSTC 405"],
-      },
-      {
-        destination: "Palladam",
-        via: ["Mangalam"],
-        buses: ["18", "22", "66"],
-      },
-      {
-        destination: "Kangeyam",
-        via: ["Uthukuli"],
-        buses: ["15K", "72", "Express"],
-      },
-    ],
-  },
+    "tiruppur-erode": [
+        {
+            busNumber: "78D",
+            operator: "TNSTC",
+            departure: "5:30 AM",
+            arrival: "7:00 AM",
+            frequency: "Every 30 minutes",
+            fare: "₹40",
+            type: "Ordinary"
+        }
+    ]
 };
 
-function populateSubCities() {
-  const city = document.getElementById("citySelect").value;
-  const subCitySelect = document.getElementById("subCitySelect");
-  const messageDiv = document.getElementById("message");
-  const resultSection = document.getElementById("resultSection");
-
-  subCitySelect.innerHTML = '<option value="">Select a Sub-City</option>';
-  messageDiv.textContent = "";
-  resultSection.innerHTML = "";
-
-  if (city === "tiruppur") {
-    for (const key in tiruppurSubAreas) {
-      const option = document.createElement("option");
-      option.value = key;
-      option.textContent = tiruppurSubAreas[key].name;
-      subCitySelect.appendChild(option);
-    }
-    subCitySelect.style.display = "block";
-  } else if (city) {
-    subCitySelect.style.display = "none";
-    messageDiv.textContent = "This area will be available soon!";
-  } else {
-    subCitySelect.style.display = "none";
-    messageDiv.textContent = "";
-  }
-}
-
-function showSelectedArea() {
-  const selectedKey = document.getElementById("subCitySelect").value;
-  const resultSection = document.getElementById("resultSection");
-
-  if (selectedKey && tiruppurSubAreas[selectedKey]) {
-    const area = tiruppurSubAreas[selectedKey];
-    let htmlContent = `<h3>${area.name}</h3><p>Buses travel from this area to:</p><ul>`;
-
-    area.routes.forEach((route) => {
-      htmlContent += `<li><strong>${route.destination}</strong>`;
-      if (route.via && route.via.length) {
-        htmlContent += `<br><small>via: ${route.via.join(", ")}</small>`;
-      }
-      if (route.buses && route.buses.length) {
-        htmlContent += `<div class='bus-tags'>${route.buses
-          .map((bus) => `<span class='bus-tag'>${bus}</span>`) 
-          .join(" ")}</div>`;
-      }
-      htmlContent += `</li>`;
-    });
-
-    htmlContent += `</ul>`;
-    resultSection.innerHTML = htmlContent;
-  } else {
-    resultSection.innerHTML = "";
-  }
-}
-
-// Optional Enhancement: Dark mode toggle
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    // Load popular routes
+    loadPopularRoutes();
+    
+    // Form submission
